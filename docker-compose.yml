@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+
+  catalog-service:
+    depends_on:
+      - book-postgres
+    image: "catalog-service"
+    container_name: "catalog-service"
+    ports:
+      - 9001:9001
+      - 8001:8001
+    environment:
+      - BPL_JVM_THREAD_COUNT=50
+      - SPRINT_DATASOURCE_URL=jdbc:postgresql://book-porstgres:5432/bookdb_catalog
+      - SPRING_PROFILES_ACTIVE=testdata
+      - BPL_DEBUG_ENABLED=true # for debug purpose
+      - BPL_DEBUG_PORT=8001 # for debug purpose, use intellij idea remote debugger
+
+  polar-postgres:
+    image: "postgres:14.4"
+    container_name: "polar-postgres"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=bookdb_catalog
