@@ -1,9 +1,15 @@
 version: "3.8"
 services:
+  config-service:
+    image: "config-service"
+    container_name: "config-service"
+    ports:
+      - 8888:8888
 
   catalog-service:
     depends_on:
       - book-postgres
+      - config-service
     image: "catalog-service"
     container_name: "catalog-service"
     ports:
