@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   config-service:
-    image: "config-service"
+    image: "ghcr.io/pebrisulistiyo/config-service"
     container_name: "config-service"
     ports:
       - 8888:8888
@@ -10,7 +10,7 @@ services:
     depends_on:
       - book-postgres
       - config-service
-    image: "catalog-service"
+    image: "ghcr.io/pebrisulistiyo/catalog-service"
     container_name: "catalog-service"
     ports:
       - 9001:9001
